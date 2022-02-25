@@ -5,5 +5,6 @@
 #include "test.h"
 int main()
 {
+  testSport();
   return 0;
 }

@@ -11,11 +11,24 @@
 //#include "Athlete.h"
 //#include "Athlete_Tree.h"
 #include "Sport.h"
+#include <iostream>
 
+/*
+string name; //name of the event
+string description; //description of the event
+string eventDate; //date of the olympic competition for this event
+*/
   /*Constructors*/
 Sport::Sport()
+{init();}
+
+Sport::~Sport()
 {}
+
   
+Sport::Sport(const string& _name,const string& _description,const string& _eventDate)
+:name(_name),description(_description),eventDate(_eventDate)
+{}
 /*Interface*/
 //display the name, description, event date for this sport
 int Sport::display()const
@@ -23,15 +36,28 @@ int Sport::display()const
   return 0;
 }
 
-string name; //name of the event
-string description; //description of the event
-string eventDate; //date of the olympic competition for this event
+void Sport::init()
+{
+  using namespace std;
+  cout << "Sport: ";
+  getline(cin,name);
+  cout << "Description: ";
+  getline(cin,description);
+  cout << "Event Date: ";
+  getline(cin,eventDate);
+}
+
+
+
+
 
 
 /*class Biathalon*/
 //Athlete_Tree athletes;
-
-Biathalon::Biathalon()
+static string biathName = "Biathalon";
+static string biathDesc = "Biathalon description.";
+static string biathDate = "Date of the biathalon event.";
+Biathalon::Biathalon():Sport(biathName,biathDesc,biathDate)
 {}
   
 /*Interface*/
@@ -53,10 +79,13 @@ int Biathalon::showAthlete(int rank)
 
 
 
+
 /*class Figure_Skating: public Sport*/
 //std::vector<Skater> athletes;
-
-Figure_Skating::Figure_Skating()
+static string skateName = "Olympic Figure Skating";
+static string skateDesc = "Figure skating description.";
+static string skateDate = "Date of the figure skating event.";
+Figure_Skating::Figure_Skating():Sport(skateName,skateDesc,skateDate)
 {}
   
 /*Interface*/
@@ -79,9 +108,12 @@ int Figure_Skating::showAthlete(int rank)
 
 //class Monobob: public Sport
 //std::list<Sledder> athletes;
+static string bobName = "Women's Monobob";
+static string bobDesc = "Monobob description";
+static string bobDate = "Women's Monobob event date!";
 
 /*Constructors*/
-Monobob::Monobob()
+Monobob::Monobob():Sport(bobName,bobDesc,bobDate)
 {}
 
 /*Interface*/

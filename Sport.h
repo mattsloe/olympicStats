@@ -20,6 +20,8 @@ class Sport
 public:
   /*Constructors*/
   Sport();
+  Sport(const string& name,const string& description,const string& eventDate);
+  virtual ~Sport();
   
   /*Interface*/
   //display the name, description, event date for this sport
@@ -33,6 +35,8 @@ private:
   string name; //name of the event
   string description; //description of the event
   string eventDate; //date of the olympic competition for this event
+  
+  void init();
   
 };
 
@@ -52,6 +56,8 @@ public:
   
 private:
   Athlete_Tree athletes;
+  
+  void init();
   
 };
 
