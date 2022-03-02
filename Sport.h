@@ -30,6 +30,8 @@ public:
   virtual int addAthlete(const Athlete&)=0;
   //display an athlete to this sport by rank
   virtual int showAthlete(int rank)=0;
+  //remove an athlete by name
+  virtual int removeByName(const std::string&)=0;
   
 private:
   string name; //name of the event
@@ -54,6 +56,8 @@ public:
   //display an athlete to this sport by rank
   int showAthlete(int rank);
   
+  int removeByName(const std::string&);
+  
 private:
   Athlete_Tree athletes;
   
@@ -74,8 +78,11 @@ public:
   int addAthlete(const Athlete&);
   //display an athlete to this sport by rank
   int showAthlete(int rank);
+  
+  int removeByName(const std::string&);
 private:
   std::vector<Skater> athletes;
+  void init();
   
 };
 
@@ -92,7 +99,10 @@ public:
   int addAthlete(const Athlete&);
   //display an athlete to this sport by rank
   int showAthlete(int rank);
+  
+  int removeByName(const std::string&);
 private:
   std::list<Sledder> athletes;
+  void init();
 };
 #endif /* Sport_h */

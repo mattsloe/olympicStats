@@ -44,6 +44,7 @@ class Skater : public Athlete
 public:
   Skater();
   Skater(const string& n, const string& nat, int a);
+  Skater(const Athlete&,int,int,int,int);
   ~Skater();
   int display()const;
   friend std::ostream& operator<<(std::ostream &out, const Skater &a);
@@ -64,6 +65,7 @@ class Sledder : public Athlete
 public:
   Sledder();
   Sledder(const string& n, const string& nat, int a);
+  Sledder(const Athlete&,const string&,int);
   ~Sledder();
   
   int display()const;
@@ -82,12 +84,13 @@ class Biathlete : public Athlete
 public:
   Biathlete();
   Biathlete(const string& n, const string& nat, int a);
+  Biathlete(const Athlete&,int,int);
   ~Biathlete();
   
   int display()const;
   friend std::ostream& operator<<(std::ostream &out, const Biathlete &a);
-  int operator==(const Biathlete &a2); //compares based on value
-  int operator<(const Biathlete &a2); //compares based on rank
+  int operator==(const Biathlete &a2)const; //compares based on value
+  int operator<(const Biathlete &a2)const; //compares based on rank
 private:
   int careerHitRate; //as a percent [0,100]
   int avgSkiRank; //[1,+inf]

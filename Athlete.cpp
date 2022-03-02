@@ -104,6 +104,10 @@ Skater::Skater(const string& n, const string& nat, int a)
 :Athlete(n,nat,a)
 {init();}
 
+Skater::Skater(const Athlete& a,int tot,int bv, int tes, int pcs)
+:Athlete(a),meanEventTotal(tot),meanBV(bv),meanTES(tes),meanPCS(pcs)
+{}
+
 Skater::~Skater()
 {}
 
@@ -160,6 +164,10 @@ Sledder::Sledder(const string& n, const string& nat, int a)
 :Athlete(n,nat,a)
 {init();}
 
+Sledder::Sledder(const Athlete& a,const string& results,int rank)
+:Athlete(a),pastResults(results),avgRank(rank)
+{}
+
 Sledder::~Sledder()
 {}
 
@@ -208,6 +216,10 @@ Biathlete::Biathlete(const string& n, const string& nat, int a)
 :Athlete(n,nat,a)
 {init();}
 
+Biathlete::Biathlete(const Athlete& a,int hitRate,int skiRank)
+:Athlete(a),careerHitRate(hitRate),avgSkiRank(skiRank)
+{}
+
 Biathlete::~Biathlete()
 {}
 
@@ -215,8 +227,8 @@ int Biathlete::display()const
 {
   using namespace std;
   Athlete::display();
-  cout << "Carrer Hit Rate: " << careerHitRate << "%\n";
-  cout << "Avg Ski Rank: " << avgSkiRank << endl;
+  cout << "  Carrer Hit Rate: " << careerHitRate << "%\n";
+  cout << "  Avg Ski Rank: " << avgSkiRank << endl;
   return 1;
 }
 
@@ -226,16 +238,16 @@ ostream& operator<<(ostream &out, const Biathlete &a)
   return out;
 }
 
-int Biathlete::operator==(const Biathlete &a2) //compares based on value
+int Biathlete::operator==(const Biathlete &a2)const //compares based on value
 {
   if((this->avgSkiRank *this->careerHitRate) == (a2.avgSkiRank * a2.careerHitRate))
     return true;
   return false;
 }
 
-int Biathlete::operator<(const Biathlete &a2) //compares based on rank
+int Biathlete::operator<(const Biathlete &a2)const //compares based on rank
 {
-  if((this->avgSkiRank *this->careerHitRate) < (a2.avgSkiRank * a2.careerHitRate))
+  if(( this->avgSkiRank + (this->careerHitRate/10)) < ( a2.avgSkiRank+( a2.careerHitRate/10)))
     return true;
   return false;
 }

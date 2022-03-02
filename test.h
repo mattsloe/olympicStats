@@ -8,15 +8,50 @@
 #ifndef test_h
 #define test_h
 #include "Sport.h"
+#include "input.h"
 void testSport()
 {
   Sport* sportPtr;
   sportPtr = new Monobob();
+  (*sportPtr).display();
   delete sportPtr;
   sportPtr = new Biathalon();
+  (*sportPtr).display();
   delete sportPtr;
   sportPtr = new Figure_Skating();
+  (*sportPtr).display();
   delete sportPtr;
+  
+}
+
+void testTree()
+{
+  Biathalon b;
+  //add some athletes
+    //Biathlete(Athlete,int hitrate,int rank)
+  b.addAthlete(Biathlete(Athlete("First Last","Country",20),10,10));
+  b.addAthlete(Biathlete(Athlete("Matt L","USA",30),50,5));
+  b.addAthlete(Biathlete(Athlete("Ash Coon","NM",31),80,1));
+  //display the dataset
+  std::cout << "Displaying the dataset...\n";
+  b.display();
+  //add another athlete
+//  std::cout << "Add another athlete\n";
+//  b.addAthlete(Biathlete());
+//  b.display();
+  //remove an athlete by name
+  std::cout << "Remove an athlete by name\n";
+  std::string str;
+  getStringInput("Which to remove? ",str);
+  if(b.removeByName(str)) std::cout << "removed\n";
+  else std::cout << "no match\n";
+  b.display();
+  //search by name
+  std::cout << "Search by Name\n";
+  getStringInput("Which to find? ",str);
+  Biathlete * result = nullptr;
+ if(!b.)
+  
 }
 
 void testAthlete()

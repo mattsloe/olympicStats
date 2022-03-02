@@ -4,6 +4,6 @@
 #include "test.h"
 int main()
 {
-  testSub1();
+  testTree();
   return 0;
 }
