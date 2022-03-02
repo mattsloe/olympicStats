@@ -24,6 +24,10 @@ public:
   friend std::ostream& operator<<(std::ostream &out, const Athlete &a);
   int operator==(const Athlete &a2); //compares based on value
   int operator<(const Athlete &a2); //compares based on name (for alphabetizing)
+  int operator>(const Athlete &a2);
+  int operator!=(const Athlete& a2);
+  int operator<=(const Athlete& a2);
+  int operator>=(const Athlete& a2);
  
 protected:
   void init();
@@ -43,8 +47,8 @@ public:
   ~Skater();
   int display()const;
   friend std::ostream& operator<<(std::ostream &out, const Skater &a);
-  int operator==(const Athlete &a2); //compares based on value
-  int operator<(const Athlete &a2); //compares based on rank
+  int operator==(const Skater &a2); //compares based on value
+  int operator<(const Skater &a2); //compares based on rank
 private:
   int meanEventTotal;
   int meanBV;
@@ -61,10 +65,11 @@ public:
   Sledder();
   Sledder(const string& n, const string& nat, int a);
   ~Sledder();
+  
   int display()const;
   friend std::ostream& operator<<(std::ostream &out, const Sledder &a);
-  int operator==(const Athlete &a2); //compares based on value
-  int operator<(const Athlete &a2); //compares based on rank
+  int operator==(const Sledder &a2); //compares based on value
+  int operator<(const Sledder &a2); //compares based on rank
 private:
   string pastResults;
   int avgRank;
@@ -81,8 +86,8 @@ public:
   
   int display()const;
   friend std::ostream& operator<<(std::ostream &out, const Biathlete &a);
-  int operator==(const Athlete &a2); //compares based on value
-  int operator<(const Athlete &a2); //compares based on rank
+  int operator==(const Biathlete &a2); //compares based on value
+  int operator<(const Biathlete &a2); //compares based on rank
 private:
   int careerHitRate; //as a percent [0,100]
   int avgSkiRank; //[1,+inf]

@@ -31,7 +31,7 @@ Athlete::Athlete()
 }
 
 Athlete::Athlete(const string& n, const string& nat, int a)
-:name(new char[n.length()+1]),nationality(),age(a)
+:name(new char[n.length()+1]),nationality(nat),age(a)
 {
   strcpy(name,n.c_str());
 }
@@ -60,14 +60,36 @@ ostream& operator<<(ostream &out, const Athlete &a)
   return out;
 }
 
-int Athlete::operator==(const Athlete &a2) //compares based on value
+int Athlete::operator==(const Athlete &a2) //compares based on name
 {
-  return 0;
+  if(strcmp(this->name,a2.name) == 0) return true;
+  return false;
 }
 int Athlete::operator<(const Athlete &a2) //compares based on name (for alphabetizing)
 {
-  return 0;
+  if(strcmp(this->name,a2.name)<0) return true;
+  return false;
 }
+int Athlete::operator>(const Athlete &a2) //compares based on name
+{
+  if(!(*this==a2)&&!(*this<a2)) return true;
+  return false;
+}
+int Athlete::operator!=(const Athlete &a2) //compares based on name (for alphabetizing)
+{
+  if(!(*this==a2)) return true;
+  return false;
+}int Athlete::operator<=(const Athlete &a2) //compares based on name
+{
+  if(*this==a2 || *this < a2) return true;
+  return false;
+}
+int Athlete::operator>=(const Athlete &a2) //compares based on name (for alphabetizing)
+{
+  if(*this==a2 || *this>a2) return true;
+  return false;
+}
+
   
 /*class Skater : public Athlete*/
 //  int meanEventTotal;
@@ -102,14 +124,18 @@ ostream& operator<<(ostream &out, const Skater &a)
   return out;
 }
 
-int Skater::operator==(const Athlete &a2) //compares based on value
+int Skater::operator==(const Skater &a2) //compares based on rank
 {
-  return 0;
+  if(this->meanEventTotal == a2.meanEventTotal){
+    return true;
+  }
+  return false;
 }
 
-int Skater::operator<(const Athlete &a2) //compares based on rank
+int Skater::operator<(const Skater &a2) //compares based on rank
 {
-  return 0;
+  if(this->meanEventTotal < a2.meanEventTotal) return true;
+  return false;
 }
 
 void Skater::init()
@@ -126,7 +152,8 @@ void Skater::init()
 /*class Sledder : public Athlete*/
 //  string pastResults;
 //  int avgRank;
-Sledder::Sledder() :Athlete()
+Sledder::Sledder()
+:Athlete()
 {init();}
 
 Sledder::Sledder(const string& n, const string& nat, int a)
@@ -150,14 +177,16 @@ ostream& operator<<(ostream &out, const Sledder &a)
   return out;
 }
 
-int Sledder::operator==(const Athlete &a2) //compares based on value
+int Sledder::operator==(const Sledder &a2) //compares based on value
 {
-  return 0;
+  if(this->avgRank == a2.avgRank) return true;
+  return false;
 }
 
-int Sledder::operator<(const Athlete &a2) //compares based on rank
+int Sledder::operator<(const Sledder &a2) //compares based on rank
 {
-  return 0;
+  if(this->avgRank < a2.avgRank) return true;
+  return false;
 }
 
 void Sledder::init()
@@ -197,14 +226,18 @@ ostream& operator<<(ostream &out, const Biathlete &a)
   return out;
 }
 
-int Biathlete::operator==(const Athlete &a2) //compares based on value
+int Biathlete::operator==(const Biathlete &a2) //compares based on value
 {
-  return 0;
+  if((this->avgSkiRank *this->careerHitRate) == (a2.avgSkiRank * a2.careerHitRate))
+    return true;
+  return false;
 }
 
-int Biathlete::operator<(const Athlete &a2) //compares based on rank
+int Biathlete::operator<(const Biathlete &a2) //compares based on rank
 {
-  return 0;
+  if((this->avgSkiRank *this->careerHitRate) < (a2.avgSkiRank * a2.careerHitRate))
+    return true;
+  return false;
 }
 
 void Biathlete::init()
