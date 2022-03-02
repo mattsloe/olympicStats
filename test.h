@@ -7,7 +7,7 @@
 
 #ifndef test_h
 #define test_h
-
+#include "Sport.h"
 void testSport()
 {
   Sport* sportPtr;
@@ -17,5 +17,12 @@ void testSport()
   delete sportPtr;
   sportPtr = new Figure_Skating();
   delete sportPtr;
+}
+
+void testAthlete()
+{
+  Athlete* athPtr;
+  athPtr = new Biathlete();
+  std::cout << *athPtr;
 }
 #endif /* test_h */
