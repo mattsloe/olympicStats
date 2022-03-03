@@ -97,23 +97,50 @@ static string skateDesc = "Figure skating description.";
 static string skateDate = "Date of the figure skating event.";
 Figure_Skating::Figure_Skating():Sport(skateName,skateDesc,skateDate)
 {init();}
-  
+ Figure_Skating::~Figure_Skating()
+{
+   athletes.clear();
+}
 /*Interface*/
 //display the name, description, event date for this sport
 int Figure_Skating::display()const
 {
   Sport::display();
+  displaySkaters();
   return 1;
 }
 //add an athlete to this sport
-int Figure_Skating::addAthlete(const Athlete&)
+int Figure_Skating::addAthlete(const Athlete& toAdd)
 {
-  return 0;
+  const Skater& add = (const Skater&)toAdd;
+  bool flag = false;
+  //case::empty list
+  if(athletes.empty()){
+    athletes.push_back(add);
+    flag = true;
+  }
+  //iterate throguh list and put in order
+  if(!flag){
+  for(auto pos = athletes.begin();pos != athletes.end();++pos){
+    if(*pos < add){
+        if(!flag) athletes.insert(pos,add);
+        flag = true;
+      break;
+    }
+  }}
+  //case::add at end
+  if(!flag){
+    athletes.push_back(add);
+    flag = true;
+  }
+  return flag;
 }
 //display an athlete to this sport by rank
 int Figure_Skating::showAthlete(int rank)
 {
-  return 0;
+  if(rank<1 || rank>athletes.size()) return 0;
+  athletes[rank-1].display();
+  return 1;
 }
 
 int Figure_Skating::removeByName(const std::string&)
@@ -123,7 +150,13 @@ int Figure_Skating::removeByName(const std::string&)
 
 void Figure_Skating::init()
 {
+}
 
+void Figure_Skating::displaySkaters() const
+{
+  for(Skater const& s:athletes){
+    s.display();
+  }
 }
 
 
@@ -137,22 +170,49 @@ static string bobDate = "Women's Monobob event date!";
 Monobob::Monobob():Sport(bobName,bobDesc,bobDate)
 {init();}
 
+Monobob::~Monobob()
+{athletes.clear();}
+
 /*Interface*/
 //display the name, description, event date for this sport
 int Monobob::display()const
 {
   Sport::display();
+  displaySledders();
   return 1;
 }
 //add an athlete to this sport
-int Monobob::addAthlete(const Athlete&)
+int Monobob::addAthlete(const Athlete& toAdd)
 {
-  return 0;
+  const Sledder& add = (const Sledder&)toAdd;
+  bool flag = false;
+  //case::empty list
+  if(athletes.empty()){
+    athletes.push_back(add);
+    flag = true;
+  }
+  //iterate throguh list and put in order
+  if(!flag){
+  for(auto pos = athletes.begin();pos != athletes.end();++pos){
+    if(add < *pos){
+        if(!flag) athletes.insert(pos,add);
+        flag = true;
+      break;
+    }
+  }}
+  //case::add at end
+  if(!flag){
+    athletes.push_back(add);
+    flag = true;
+  }
+  return flag;
 }
 //display an athlete to this sport by rank
 int Monobob::showAthlete(int rank)
 {
-  return 0;
+  if(rank<1 || (unsigned long)rank>athletes.size()) return 0;
+  athletes[rank-1].display();
+  return 1; 
 }
 
 int Monobob::removeByName(const std::string&)
@@ -163,5 +223,12 @@ int Monobob::removeByName(const std::string&)
 void Monobob::init()
 {
 
+}
+
+void Monobob::displaySledders()const
+{
+  for(Sledder const& s:athletes){
+    s.display();
+  }
 }
 

@@ -1,9 +1,11 @@
 //main driver for olympicStats program
 //Author: Matt Loera
 //
-#include "test.h"
+//#include "test.h"
 int main()
 {
-  testTree();
+
+  init();
+  mainMenu();
   return 0;
 }

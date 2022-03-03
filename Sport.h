@@ -70,6 +70,7 @@ class Figure_Skating: public Sport
 public:
   /*Constructors*/
   Figure_Skating();
+  ~Figure_Skating();
   
   /*Interface*/
   //display the name, description, event date for this sport
@@ -83,6 +84,7 @@ public:
 private:
   std::vector<Skater> athletes;
   void init();
+  void displaySkaters()const;
   
 };
 
@@ -91,6 +93,7 @@ class Monobob: public Sport
 public:
   /*Constructors*/
   Monobob();
+  ~Monobob();
   
   /*Interface*/
   //display the name, description, event date for this sport
@@ -102,7 +105,8 @@ public:
   
   int removeByName(const std::string&);
 private:
-  std::list<Sledder> athletes;
+  std::vector<Sledder> athletes;
   void init();
+  void displaySledders()const;
 };
 #endif /* Sport_h */

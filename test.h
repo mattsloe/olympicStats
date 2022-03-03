@@ -24,7 +24,7 @@ void testSport()
   
 }
 
-void testTree()
+void testBiathalon()
 {
   Biathalon b;
   //add some athletes
@@ -36,9 +36,9 @@ void testTree()
   std::cout << "Displaying the dataset...\n";
   b.display();
   //add another athlete
-//  std::cout << "Add another athlete\n";
-//  b.addAthlete(Biathlete());
-//  b.display();
+  std::cout << "Add another athlete\n";
+  b.addAthlete(Biathlete());
+  b.display();
   //remove an athlete by name
   std::cout << "Remove an athlete by name\n";
   std::string str;
@@ -49,8 +49,70 @@ void testTree()
   //search by name
   std::cout << "Search by Name\n";
   getStringInput("Which to find? ",str);
-  Biathlete * result = nullptr;
- if(!b.)
+  
+}
+void testSkater()
+{
+  std::list<Skater> l;
+  l.push_back(Skater(Athlete("Name","C",20),1,2,3,4));
+  Skater m;
+  l.push_back(m);
+}
+void testSkating()
+{
+  Figure_Skating s;
+  //add some athletes
+    //Skater(const Athlete&,int,int,int,int);
+  s.addAthlete(Skater(Athlete("Athlete 1","USA",28),5,4,3,2));
+  s.addAthlete(Skater(Athlete("First Last","Lat",25),3,4,5,6));
+  s.addAthlete(Skater(Athlete("Pom Poko","JP",29),3,3,3,3));
+  //display the dataset
+  std::cout << "Displaying the dataset...\n";
+  s.display();
+  //add another athlete
+  std::cout << "Add another athlete\n";
+  Skater newAthlete;
+  s.addAthlete(newAthlete);
+  s.display();
+  //remove athlete by name
+//  std::cout << "Remove an athlete by name\n";
+//  std::string str;
+//  getStringInput("Which to remove? ",str);
+//  if(s.removeByName(str)) std::cout << "removed\n";
+//  else std::cout << "no match\n";
+//  s.display();
+  //search by rank
+  std::cout << "Search by rank\n";
+  if(!s.showAthlete(getIntInput("Which rank? ")))
+    std::cout << "not found :(\n";
+}
+
+void testSledding()
+{
+  Monobob s;
+  //add some athletes
+    // Sledder(const Athlete&,const string&,int);
+  s.addAthlete(Sledder(Athlete("Athlete 1","USA",28),"results",3));
+  s.addAthlete(Sledder(Athlete("First Last","Lat",25),"past results here",6));
+  s.addAthlete(Sledder(Athlete("Pom Poko","JP",29),"some results",4));
+  //display the dataset
+  std::cout << "Displaying the dataset...\n";
+  s.display();
+  //add another athlete
+  std::cout << "Add another athlete\n";
+  s.addAthlete(Sledder());
+  s.display();
+  //remove athlete by name
+  std::cout << "Remove an athlete by name\n";
+  std::string str;
+  getStringInput("Which to remove? ",str);
+  if(s.removeByName(str)) std::cout << "removed\n";
+  else std::cout << "no match\n";
+  s.display();
+  //search by rank
+  std::cout << "Search by rank\n";
+  if(!s.showAthlete(getIntInput("Which rank? ")))
+    std::cout << "not found :(\n";
   
 }
 

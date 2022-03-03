@@ -90,6 +90,16 @@ int Athlete::operator>=(const Athlete &a2) //compares based on name (for alphabe
   return false;
 }
 
+Athlete& Athlete::operator=(const Athlete& a2)
+{
+  if(name) delete[] name;
+  name = new char[strlen(a2.name)+1];
+  strcpy(name,a2.name);
+  nationality = a2.nationality;
+  age = a2.age;
+  return *this;
+}
+
   
 /*class Skater : public Athlete*/
 //  int meanEventTotal;
@@ -108,6 +118,11 @@ Skater::Skater(const Athlete& a,int tot,int bv, int tes, int pcs)
 :Athlete(a),meanEventTotal(tot),meanBV(bv),meanTES(tes),meanPCS(pcs)
 {}
 
+Skater::Skater(const Skater& toCopy)
+:Athlete(toCopy),meanEventTotal(toCopy.meanEventTotal), meanBV(toCopy.meanBV),
+meanTES(toCopy.meanTES),meanPCS(toCopy.meanPCS)
+{}
+
 Skater::~Skater()
 {}
 
@@ -115,10 +130,10 @@ int Skater::display()const
 {
   using namespace std;
   Athlete::display();
-  cout << "Mean Event Total: " << meanEventTotal << endl;
-  cout << "Mean BV: " << meanBV << endl;
-  cout << "Mean TES: " << meanTES << endl;
-  cout << "Mean PCS: " << meanPCS << endl;
+  cout << "  Mean Event Total: " << meanEventTotal << endl;
+  cout << "  Mean BV: " << meanBV << endl;
+  cout << "  Mean TES: " << meanTES << endl;
+  cout << "  Mean PCS: " << meanPCS << endl;
   return 1;
 }
 
@@ -128,7 +143,7 @@ ostream& operator<<(ostream &out, const Skater &a)
   return out;
 }
 
-int Skater::operator==(const Skater &a2) //compares based on rank
+int Skater::operator==(const Skater &a2)const //compares based on rank
 {
   if(this->meanEventTotal == a2.meanEventTotal){
     return true;
@@ -136,7 +151,7 @@ int Skater::operator==(const Skater &a2) //compares based on rank
   return false;
 }
 
-int Skater::operator<(const Skater &a2) //compares based on rank
+int Skater::operator<(const Skater &a2)const //compares based on rank
 {
   if(this->meanEventTotal < a2.meanEventTotal) return true;
   return false;
@@ -175,8 +190,8 @@ int Sledder::display()const
 {
   using namespace std;
   Athlete::display();
-  cout << "Average Rank: " << avgRank << endl;
-  cout << "Past Results: " << pastResults << endl;
+  cout << "  Average Rank: " << avgRank << endl;
+  cout << "  Past Results: " << pastResults << endl;
   return 1;
 }
 ostream& operator<<(ostream &out, const Sledder &a)
@@ -185,13 +200,13 @@ ostream& operator<<(ostream &out, const Sledder &a)
   return out;
 }
 
-int Sledder::operator==(const Sledder &a2) //compares based on value
+int Sledder::operator==(const Sledder &a2)const //compares based on value
 {
   if(this->avgRank == a2.avgRank) return true;
   return false;
 }
 
-int Sledder::operator<(const Sledder &a2) //compares based on rank
+int Sledder::operator<(const Sledder &a2)const //compares based on rank
 {
   if(this->avgRank < a2.avgRank) return true;
   return false;
